@@ -1,240 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>NekoSune Community - 🎃 Halloween Radio 👻</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- 
-       Twitter/X Embed OG
-   -->
-   <meta name="twitter:card" content="player">
-   <meta name="twitter:site" content="@nekosunevr">
-   <meta name="twitter:player" content="https://widgets.nekosunevr.co.uk/radiochannels/index.html">
-   <meta name="twitter:player:width" content="100">
-   <meta name="twitter:player:height" content="160">
-   <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/CD-ROM.png/640px-CD-ROM.png">
-   
-   <!-- 
-       Discord Embed OG
-   -->
-   <meta property="og:title" content="🎃 NekoSune Halloween Radio - Spooky Mixes 👻">
-   <meta property="og:description" content="Join us for a haunted night of music, chilling vibes, and spooky soundscapes. NekoSune Community Radio goes Halloween mode!">
-   <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3a/Halloween_Pumpkin.png">
-   <meta property="og:url" content="https://widgets.nekosunevr.co.uk/radiochannels/">
-   <meta property="og:audio" content="https://icy.nekosunevr.co.uk/nekosunecommunity.mp3">
-   <meta property="og:audio:type" content="audio/mp3">
-   <meta property="og:audio:secure_url" content="https://icy.nekosunevr.co.uk/nekosunecommunity.mp3">
-  
+  <meta charset="UTF-8" />
+  <title>NekoSune Community - 🎄 Christmas Radio 🎶</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Social / OG -->
+  <meta name="twitter:card" content="player">
+  <meta name="twitter:site" content="@nekosunevr">
+  <meta name="twitter:player" content="https://widgets.nekosunevr.co.uk/radiochannels/index.html">
+  <meta name="twitter:player:width" content="100">
+  <meta name="twitter:player:height" content="160">
+  <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Christmas_tree_icon.png/640px-Christmas_tree_icon.png">
+
+  <meta property="og:title" content="🎄 NekoSune Christmas Radio - Holiday Mixes" />
+  <meta property="og:description" content="Cozy up for holly-jolly tunes — NekoSune Community Radio in Christmas mode!" />
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Christmas_tree_icon.png/640px-Christmas_tree_icon.png" />
+  <meta property="og:url" content="https://widgets.nekosunevr.co.uk/radiochannels/" />
+  <meta property="og:audio" content="https://icy.nekosunevr.co.uk/nekosunecommunity.mp3" />
+  <meta property="og:audio:type" content="audio/mp3" />
+  <meta property="og:audio:secure_url" content="https://icy.nekosunevr.co.uk/nekosunecommunity.mp3" />
+
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      background: radial-gradient(circle at top, #1a0d1a 0%, #0a0a0a 100%);
-      font-family: 'Creepster', cursive, sans-serif;
-      overflow-x: hidden;
+    :root{
+      --christmas-red:#c62828;
+      --christmas-green:#2e7d32;
+      --gold:#f6c453;
+      --bg:#07121a;
+      --card:#08202a;
     }
 
-    .disc { width: 16rem; height: 16rem; display: flex; align-items: center; justify-content: center; }
-    .disc.playing { animation: spin 6s linear infinite; }
-    .disc.paused { animation-play-state: paused; }
-    @keyframes spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }
-
-    /* Halloween Glow */
-    h2, h3, h4 {
-      text-shadow: 0 0 10px orange, 0 0 20px red;
+    body{
+      margin:0;
+      font-family: 'Nunito', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #07121a 0%, #071827 50%, #04121a 100%);
+      color: #fff;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:2rem;
+      overflow:hidden;
     }
 
-    /* Flicker Animation */
-    .flicker {
-      animation: flicker 2s infinite;
-    }
-    @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-      20%, 24%, 55% { opacity: 0.4; }
+    /* layout */
+    .container{ max-width:1100px; width:100%; display:grid; grid-template-columns: 1fr 2fr; gap:1.25rem; align-items:start; }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.06));
+      border-radius:1rem;
+      padding:1.25rem;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
     }
 
-    /* Floating Bats */
-    .bat {
-      position: absolute;
-      top: -50px;
-      width: 40px;
-      animation: fly 12s linear infinite;
-    }
-    @keyframes fly {
-      from { transform: translateX(-100px) translateY(0) rotate(0deg); }
-      to { transform: translateX(110vw) translateY(200px) rotate(360deg); }
+    /* ornament / disc */
+    .ornament{
+      width:16rem;
+      height:16rem;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.06), rgba(0,0,0,0.10));
+      position:relative;
+      border:6px solid rgba(246,196,83,0.10);
+      box-shadow: 0 12px 40px rgba(2,6,23,0.7), inset 0 -15px 40px rgba(0,0,0,0.4);
     }
 
-    /* Falling Pumpkins */
-    .pumpkin {
-      position: absolute;
-      top: -60px;
-      font-size: 2rem;
-      animation: fall 10s linear infinite;
+    .ornament .inner{
+      width:92%;
+      height:92%;
+      border-radius:50%;
+      overflow:hidden;
+      border:5px solid rgba(255,255,255,0.02);
+    }
+
+    .ornament.playing{ animation: spin 5s linear infinite; }
+    .ornament.paused{ animation-play-state: paused; }
+    @keyframes spin { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
+
+    .ornament-top{
+      position:absolute;
+      top:-18px;
+      width:60px;
+      height:30px;
+      left:calc(50% - 30px);
+      background: linear-gradient(180deg, var(--gold), #bd8a2f);
+      border-radius:6px 6px 12px 12px;
+      box-shadow: inset 0 -3px 8px rgba(0,0,0,0.25);
+    }
+
+    /* twinkling lights header */
+    .lights {
+      display:flex;
+      gap:6px;
+      padding:0.5rem;
+      justify-content:center;
+      margin-bottom:0.5rem;
+    }
+    .bulb{
+      width:12px;height:12px;border-radius:50%;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      animation: blink 3s infinite;
+      opacity:0.95;
+    }
+    .b-red{ background:var(--christmas-red); animation-delay:0s; }
+    .b-green{ background:var(--christmas-green); animation-delay:0.4s; }
+    .b-gold{ background:var(--gold); animation-delay:0.8s; }
+    @keyframes blink {
+      0%, 50%, 100%{ transform:scale(1); filter:brightness(1); }
+      25%{ transform:scale(1.25); filter:brightness(1.8); }
+      75%{ transform:scale(0.95); filter:brightness(0.8); }
+    }
+
+    h1.title{
+      font-family: 'Mountains of Christmas', cursive;
+      font-size:1.5rem;
+      margin:0;
+      color:var(--gold);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    .meta{ color: rgba(255,255,255,0.75); font-size:0.95rem; margin-top:0.25rem; }
+
+    /* snow */
+    .snowflake{
+      position:fixed;
+      top:-10%;
+      pointer-events:none;
+      font-size:1.15rem;
+      opacity:0.95;
+      animation: fall linear infinite;
+      filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
     }
     @keyframes fall {
-      from { transform: translateY(-60px); }
-      to { transform: translateY(110vh); }
+      to { transform: translateY(120vh) rotate(360deg); }
     }
 
-    /* Halloween Buttons */
-    .spooky-btn {
-      background: linear-gradient(90deg, #ff6600, #cc3300);
-      color: black;
-      font-weight: bold;
-      text-shadow: 0 0 5px #ffcc00;
+    /* controls */
+    .controls{ display:flex; gap:0.5rem; align-items:center; margin-top:0.75rem; }
+    .btn{
+      padding:0.5rem 0.9rem; border-radius:0.65rem; font-weight:700; cursor:pointer; border: none;
     }
-    .spooky-btn:hover {
-      background: linear-gradient(90deg, #ff9900, #ff3300);
-      color: white;
+    .btn-play{ background: linear-gradient(90deg, var(--christmas-red), #ff6f61); color:white; }
+    .btn-play:hover{ filter:brightness(1.05); }
+
+    .btn-jingle{ background: linear-gradient(90deg, #2e7d32, #1b5e20); color:white; }
+
+    input[type=range] { accent-color: var(--gold); }
+
+    /* song list */
+    .song-card{ display:flex; gap:0.75rem; align-items:center; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.06)); padding:0.6rem; border-radius:0.7rem; border:1px solid rgba(255,255,255,0.03); }
+    .song-cover{ width:48px; height:48px; border-radius:8px; object-fit:cover; }
+
+    /* responsive */
+    @media (max-width:820px){
+      .container{ grid-template-columns: 1fr; }
+      .ornament{ width:12rem; height:12rem; }
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 </head>
-<body class="text-gray-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-  
-  <!-- Floating bats -->
-  <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Bat_icon.svg" class="bat" style="left:10%; animation-delay: 0s;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Bat_icon.svg" class="bat" style="left:70%; animation-delay: 5s;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Bat_icon.svg" class="bat" style="left:40%; animation-delay: 8s;">
+<body>
+  <!-- falling snow generated by JS (accessible emoji snow fallback) -->
+  <div class="container">
+    <!-- LEFT: ornament + player -->
+    <div class="card" style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
+      <div class="lights" aria-hidden="true">
+        <div class="bulb b-red"></div>
+        <div class="bulb b-green"></div>
+        <div class="bulb b-gold"></div>
+        <div class="bulb b-red"></div>
+        <div class="bulb b-green"></div>
+      </div>
 
-  <!-- Falling Pumpkins -->
-  <div class="pumpkin" style="left:20%; animation-delay:1s;">🎃</div>
-  <div class="pumpkin" style="left:60%; animation-delay:3s;">🎃</div>
-  <div class="pumpkin" style="left:80%; animation-delay:5s;">🎃</div>
+      <div class="ornament" id="ornament">
+        <div class="ornament-top" aria-hidden="true"></div>
+        <div class="inner">
+          <img id="coverArt" src="https://placehold.co/400x400?text=Christmas+Cover" alt="cover" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+      </div>
 
-  <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-3 gap-6">
-    
-    <!-- Player -->
-    <div class="col-span-1 flex flex-col items-center gap-4">
-      <div class="relative">
-        <div id="disc" class="disc rounded-full shadow-2xl border-4 border-orange-600">
-          <div class="w-full h-full rounded-full overflow-hidden border-4 border-purple-800">
-            <img id="coverArt" src="https://placehold.co/400x400?text=Spooky+Cover" alt="cover" class="w-full h-full object-cover" />
+      <div style="text-align:center;">
+        <h1 class="title">NekoSune Holiday Radio</h1>
+        <div class="meta" id="djStatus">Warm cocoa & chill beats</div>
+      </div>
+
+      <div class="controls" style="width:100%; justify-content:center;">
+        <button id="playBtn" class="btn btn-play">Play</button>
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.5" style="width:160px;">
+        <button id="jingleToggle" class="btn btn-jingle" title="Toggle ambient jingle">Toggle Jingle</button>
+      </div>
+
+      <audio id="player" src="https://icy.nekosunevr.co.uk/nekosunecommunity.mp3"></audio>
+      <!-- optional jingle (not autoplay) -->
+      <audio id="jingle" src="" preload="none"></audio>
+    </div>
+
+    <!-- RIGHT: info and requests -->
+    <div class="card" style="display:flex;flex-direction:column;gap:1rem;">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <h2 style="margin:0;font-family:'Mountains of Christmas',cursive;font-size:1.25rem;color:var(--gold);">Your Station — 🎄</h2>
+            <div class="meta" id="nowPlaying">Fetching what's playing…</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="meta">Now: <strong id="songTitle">Loading...</strong></div>
+            <div class="meta" id="songArtist">Please wait</div>
           </div>
         </div>
       </div>
 
-      <div class="text-center">
-        <h3 id="songTitle" class="text-lg font-semibold flicker">Summoning...</h3>
-        <p id="songArtist" class="text-sm text-gray-400">In the shadows</p>
-        <p id="djStatus" class="text-xs text-orange-400 mt-1">👻 Haunted AutoDJ</p>
-      </div>
-
-      <div class="flex items-center gap-3 mt-3">
-        <button id="playBtn" class="px-4 py-2 rounded-lg spooky-btn">Play</button>
-        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.5">
-      </div>
-
-      <audio id="player" src="https://icy.nekosunevr.co.uk/nekosunecommunity.mp3"></audio>
-    </div>
-
-    <!-- Info & Requests -->
-    <div class="col-span-2 bg-gray-800/60 rounded-2xl p-4 shadow-lg flex flex-col gap-4 border border-orange-600">
-      <h2 class="text-2xl font-bold">🎃 Haunted Station 👻</h2>
-
       <div>
-        <h4 class="font-semibold mb-2">On Air DJs</h4>
-        <div id="djList" class="text-sm text-gray-300">Summoning...</div>
+        <h3 style="margin:0 0 0.5rem 0;font-weight:700;">On Air DJs</h3>
+        <div class="meta" id="djList">Loading DJs...</div>
       </div>
 
       <div>
-        <h4 class="font-semibold mb-2">Now Playing</h4>
-        <div id="nowPlaying" class="text-sm text-gray-200">Crawling from the crypt...</div>
-      </div>
-
-      <div>
-        <h4 class="font-semibold mb-2">Request a Spell (Song)</h4>
-        <details class="bg-gray-900 rounded-lg border border-purple-700">
-          <summary class="cursor-pointer px-4 py-2 font-semibold bg-purple-800 rounded-t-lg hover:bg-purple-700">
-            🎶 Available Spells
-          </summary>
-          <div id="songs" class="p-4 grid gap-4 max-h-96 overflow-y-auto"></div>
+        <h3 style="margin:0 0 0.5rem 0;font-weight:700;">Request a Song</h3>
+        <details style="background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.04)); padding:0.5rem; border-radius:0.6rem;">
+          <summary style="cursor:pointer;padding:0.4rem 0.6rem;border-radius:0.45rem;background:rgba(255,255,255,0.02);">Available Songs (click)</summary>
+          <div id="songs" style="margin-top:0.6rem; display:grid; gap:0.6rem; max-height:320px; overflow:auto;"></div>
         </details>
+      </div>
+
+      <div style="margin-top:auto; display:flex; gap:0.75rem; justify-content:flex-end; align-items:center;">
+        <div class="meta">Theme: <strong>Christmas</strong></div>
+        <div style="font-size:1.2rem;">🎁 ❄️</div>
       </div>
     </div>
   </div>
 
   <script>
-    const player = document.getElementById("player");
-    const playBtn = document.getElementById("playBtn");
-    const volume = document.getElementById("volume");
-    const disc = document.getElementById("disc");
-    
-    function updateImageURL(songURL) {
-        var ogImageTag = document.querySelector('meta[property="og:image"]');
-        var twitterImageTag = document.querySelector('meta[name="twitter:image"]');
-    
-        ogImageTag.setAttribute('content', songURL);
-        twitterImageTag.setAttribute('content', songURL);
-    }
+    // elements
+    const player = document.getElementById('player');
+    const playBtn = document.getElementById('playBtn');
+    const jingleToggle = document.getElementById('jingleToggle');
+    const jingle = document.getElementById('jingle');
+    const volume = document.getElementById('volume');
+    const ornament = document.getElementById('ornament');
 
-    playBtn.addEventListener("click", () => {
+    // set jingle source (you can set your own jingle url here)
+    // keep empty by default to avoid auto-download; replace with URL if you host a file
+    jingle.src = ""; // e.g. "https://example.com/xmas-jingle.mp3"
+
+    // Play/pause
+    playBtn.addEventListener('click', () => {
       if (player.paused) {
-        player.play();
-        disc.classList.add("playing");
-        playBtn.textContent = "Pause";
+        player.play().catch(()=>{ /* playback blocked by browser */ });
+        ornament.classList.add('playing');
+        playBtn.textContent = 'Pause';
       } else {
         player.pause();
-        disc.classList.remove("playing");
-        playBtn.textContent = "Play";
+        ornament.classList.remove('playing');
+        playBtn.textContent = 'Play';
       }
     });
 
-    volume.addEventListener("input", e => { player.volume = e.target.value; });
+    volume.addEventListener('input', e => { player.volume = e.target.value; });
 
-    async function fetchData() {
-      try {
-        const res = await fetch("api.php?action=nowplaying");
+    // Jingle toggle — play short jingle once when enabled (if src set)
+    let jingleEnabled = false;
+    jingleToggle.addEventListener('click', () => {
+      jingleEnabled = !jingleEnabled;
+      jingleToggle.style.opacity = jingleEnabled ? '1' : '0.85';
+      if (jingleEnabled && jingle.src) {
+        jingle.currentTime = 0;
+        jingle.play().catch(()=>{ /* suppressed */ });
+      } else if (!jingleEnabled) {
+        jingle.pause();
+      }
+    });
+
+    // update og image helper
+    function updateImageURL(songURL) {
+      const og = document.querySelector('meta[property="og:image"]');
+      const tw = document.querySelector('meta[name="twitter:image"]');
+      if (og) og.setAttribute('content', songURL);
+      if (tw) tw.setAttribute('content', songURL);
+    }
+
+    // fetch now playing (uses your existing api.php)
+    async function fetchData(){
+      try{
+        const res = await fetch('api.php?action=nowplaying');
         const data = await res.json();
-
-        document.getElementById("songTitle").textContent = data.title || "Unknown";
-        document.getElementById("songArtist").textContent = data.artist || "Unknown";
-        document.getElementById("coverArt").src = data.art || "https://placehold.co/400x400?text=Spooky+Cover";
-        document.getElementById("djStatus").textContent = data.is_live ? "🦇 Live DJ" : "👻 Haunted AutoDJ";
-        document.getElementById("nowPlaying").textContent = `${data.title} - ${data.artist}`;
-        document.getElementById("djList").textContent = data.djs.length ? data.djs.join(", ") : "No DJs in the crypt right now.";
-        document.title = `🎃 NekoSune Halloween Radio: ${data.artist} - ${data.title}`;
-        updateImageURL(data.art);
-      } catch (e) {
-        console.error(e);
+        document.getElementById('songTitle').textContent = data.title || 'Unknown';
+        document.getElementById('songArtist').textContent = data.artist || 'Unknown';
+        document.getElementById('nowPlaying').textContent = `${data.title || '—'} — ${data.artist || '—'}`;
+        document.getElementById('djList').textContent = data.djs && data.djs.length ? data.djs.join(', ') : 'No DJs live right now.';
+        const art = data.art || 'https://placehold.co/400x400?text=Christmas+Cover';
+        document.getElementById('coverArt').src = art;
+        document.title = `🎄 NekoSune Christmas Radio: ${data.artist || '—'} - ${data.title || '—'}`;
+        updateImageURL(art);
+      }catch(e){
+        console.warn('Nowplaying fetch failed', e);
       }
     }
 
-    // Poll every 3 seconds
     setInterval(fetchData, 3000);
     fetchData();
 
-    async function loadSongs() {
-      const res = await fetch("api.php?action=list");
-      const songs = await res.json();
-      const container = document.getElementById("songs");
-      container.innerHTML = "";
-      songs.forEach(song => {
-        container.innerHTML += `
-          <div class="flex items-center gap-4 bg-gray-800/80 p-3 rounded-lg border border-orange-600">
-            <img src="${song.song.art}" class="w-16 h-16 rounded-full animate-spin-slow" alt="cover">
-            <div class="flex-1">
-              <div class="font-bold">${song.song.title}</div>
-              <div class="text-sm text-gray-400">${song.song.artist}</div>
+    // load songs list
+    async function loadSongs(){
+      try{
+        const res = await fetch('api.php?action=list');
+        const songs = await res.json();
+        const container = document.getElementById('songs');
+        container.innerHTML = '';
+        (songs || []).forEach(song=>{
+          const html = `
+            <div class="song-card">
+              <img class="song-cover" src="${song.song.art || 'https://placehold.co/100x100?text=Song'}" alt="cover">
+              <div style="flex:1;">
+                <div style="font-weight:700;">${song.song.title}</div>
+                <div style="font-size:0.85rem;color:rgba(255,255,255,0.75)">${song.song.artist || ''}</div>
+              </div>
+              <button class="btn btn-play" onclick="requestSong('${song.request_id}')">Request</button>
             </div>
-            <button onclick="requestSong('${song.request_id}')" class="spooky-btn px-3 py-1 rounded">
-              Request
-            </button>
-          </div>`;
-      });
+          `;
+          container.insertAdjacentHTML('beforeend', html);
+        });
+      }catch(e){
+        console.warn('Load songs failed', e);
+      }
     }
-
-    async function requestSong(id) {
-      const res = await fetch("api.php?action=request", {
-        method: "POST",
-        body: new URLSearchParams({ request_id: id })
-      });
-      const data = await res.json();
-      alert(data.message || "Request sent!");
-    }
-
     loadSongs();
+
+    async function requestSong(id){
+      try{
+        const res = await fetch('api.php?action=request', { method:'POST', body: new URLSearchParams({ request_id: id })});
+        const data = await res.json();
+        alert(data.message || 'Request sent!');
+      }catch(e){
+        alert('Request failed');
+      }
+    }
+
+    // falling snow generator (accessible fallback: uses unicode snowflake)
+    function spawnSnowflake(){
+      const flake = document.createElement('div');
+      flake.className = 'snowflake';
+      flake.style.left = Math.random()*100 + 'vw';
+      const size = 10 + Math.random()*18;
+      flake.style.fontSize = size + 'px';
+      flake.style.opacity = 0.6 + Math.random()*0.6;
+      const duration = 8 + Math.random()*12;
+      flake.style.animationDuration = duration + 's';
+      // choose emoji gentle snow or star
+      const choices = ['❄️','❅','✶','✻'];
+      flake.textContent = choices[Math.floor(Math.random()*choices.length)];
+      document.body.appendChild(flake);
+      setTimeout(()=> flake.remove(), duration*1000 + 500);
+    }
+
+    // spawn a few continuously, but modest amount so CPU stays low
+    setInterval(spawnSnowflake, 600);
+    for(let i=0;i<12;i++) setTimeout(spawnSnowflake, i*300);
+
+    // keyboard space to toggle play (nice little accessibility)
+    document.addEventListener('keydown', (e)=>{
+      if(e.code === 'Space' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA'){
+        e.preventDefault();
+        playBtn.click();
+      }
+    });
+
+    // expose requestSong to global as used in inline onclick
+    window.requestSong = requestSong;
   </script>
 </body>
 </html>
