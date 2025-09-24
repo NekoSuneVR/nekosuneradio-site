@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NekoSune Community - 🎃 Halloween Radio 👻</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- 
+       Twitter/X Embed OG
+   -->
+   <meta name="twitter:card" content="player">
+   <meta name="twitter:site" content="@nekosunevr">
+   <meta name="twitter:player" content="https://widgets.nekosunevr.co.uk/radiochannels/index.html">
+   <meta name="twitter:player:width" content="100">
+   <meta name="twitter:player:height" content="160">
+   <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/CD-ROM.png/640px-CD-ROM.png">
+   
+   <!-- 
+       Discord Embed OG
+   -->
+   <meta property="og:title" content="🎃 NekoSune Halloween Radio - Spooky Mixes 👻">
+   <meta property="og:description" content="Join us for a haunted night of music, chilling vibes, and spooky soundscapes. NekoSune Community Radio goes Halloween mode!">
+   <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3a/Halloween_Pumpkin.png">
+   <meta property="og:url" content="https://widgets.nekosunevr.co.uk/radiochannels/">
+   <meta property="og:audio" content="https://icy.nekosunevr.co.uk/nekosunecommunity.mp3">
+   <meta property="og:audio:type" content="audio/mp3">
+   <meta property="og:audio:secure_url" content="https://icy.nekosunevr.co.uk/nekosunecommunity.mp3">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: radial-gradient(circle at top, #1a0d1a 0%, #0a0a0a 100%);
+      font-family: 'Creepster', cursive, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .disc { width: 16rem; height: 16rem; display: flex; align-items: center; justify-content: center; }
+    .disc.playing { animation: spin 6s linear infinite; }
+    .disc.paused { animation-play-state: paused; }
+    @keyframes spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }
+
+    /* Halloween Glow */
+    h2, h3, h4 {
+      text-shadow: 0 0 10px orange, 0 0 20px red;
+    }
+
+    /* Flicker Animation */
+    .flicker {
+      animation: flicker 2s infinite;
+    }
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.4; }
+    }
+
+    /* Floating Bats */
+    .bat {
+      position: absolute;
+      top: -50px;
+      width: 40px;
+      animation: fly 12s linear infinite;
+    }
+    @keyframes fly {
+      from { transform: translateX(-100px) translateY(0) rotate(0deg); }
+      to { transform: translateX(110vw) translateY(200px) rotate(360deg); }
+    }
+
+    /* Falling Pumpkins */
+    .pumpkin {
+      position: absolute;
+      top: -60px;
+      font-size: 2rem;
+      animation: fall 10s linear infinite;
+    }
+    @keyframes fall {
+      from { transform: translateY(-60px); }
+      to { transform: translateY(110vh); }
+    }
+
+    /* Halloween Buttons */
+    .spooky-btn {
+      background: linear-gradient(90deg, #ff6600, #cc3300);
+      color: black;
+      font-weight: bold;
+      text-shadow: 0 0 5px #ffcc00;
+    }
+    .spooky-btn:hover {
+      background: linear-gradient(90deg, #ff9900, #ff3300);
+      color: white;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+</head>
+<body class="text-gray-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+  
+  <!-- Floating bats -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Bat_icon.svg" class="bat" style="left:10%; animation-delay: 0s;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Bat_icon.svg" class="bat" style="left:70%; animation-delay: 5s;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Bat_icon.svg" class="bat" style="left:40%; animation-delay: 8s;">
+
+  <!-- Falling Pumpkins -->
+  <div class="pumpkin" style="left:20%; animation-delay:1s;">🎃</div>
+  <div class="pumpkin" style="left:60%; animation-delay:3s;">🎃</div>
+  <div class="pumpkin" style="left:80%; animation-delay:5s;">🎃</div>
+
+  <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-3 gap-6">
+    
+    <!-- Player -->
+    <div class="col-span-1 flex flex-col items-center gap-4">
+      <div class="relative">
+        <div id="disc" class="disc rounded-full shadow-2xl border-4 border-orange-600">
+          <div class="w-full h-full rounded-full overflow-hidden border-4 border-purple-800">
+            <img id="coverArt" src="https://placehold.co/400x400?text=Spooky+Cover" alt="cover" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <h3 id="songTitle" class="text-lg font-semibold flicker">Summoning...</h3>
+        <p id="songArtist" class="text-sm text-gray-400">In the shadows</p>
+        <p id="djStatus" class="text-xs text-orange-400 mt-1">👻 Haunted AutoDJ</p>
+      </div>
+
+      <div class="flex items-center gap-3 mt-3">
+        <button id="playBtn" class="px-4 py-2 rounded-lg spooky-btn">Play</button>
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.5">
+      </div>
+
+      <audio id="player" src="https://icy.nekosunevr.co.uk/nekosunecommunity.mp3"></audio>
+    </div>
+
+    <!-- Info & Requests -->
+    <div class="col-span-2 bg-gray-800/60 rounded-2xl p-4 shadow-lg flex flex-col gap-4 border border-orange-600">
+      <h2 class="text-2xl font-bold">🎃 Haunted Station 👻</h2>
+
+      <div>
+        <h4 class="font-semibold mb-2">On Air DJs</h4>
+        <div id="djList" class="text-sm text-gray-300">Summoning...</div>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-2">Now Playing</h4>
+        <div id="nowPlaying" class="text-sm text-gray-200">Crawling from the crypt...</div>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-2">Request a Spell (Song)</h4>
+        <details class="bg-gray-900 rounded-lg border border-purple-700">
+          <summary class="cursor-pointer px-4 py-2 font-semibold bg-purple-800 rounded-t-lg hover:bg-purple-700">
+            🎶 Available Spells
+          </summary>
+          <div id="songs" class="p-4 grid gap-4 max-h-96 overflow-y-auto"></div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const player = document.getElementById("player");
+    const playBtn = document.getElementById("playBtn");
+    const volume = document.getElementById("volume");
+    const disc = document.getElementById("disc");
+    
+    function updateImageURL(songURL) {
+        var ogImageTag = document.querySelector('meta[property="og:image"]');
+        var twitterImageTag = document.querySelector('meta[name="twitter:image"]');
+    
+        ogImageTag.setAttribute('content', songURL);
+        twitterImageTag.setAttribute('content', songURL);
+    }
+
+    playBtn.addEventListener("click", () => {
+      if (player.paused) {
+        player.play();
+        disc.classList.add("playing");
+        playBtn.textContent = "Pause";
+      } else {
+        player.pause();
+        disc.classList.remove("playing");
+        playBtn.textContent = "Play";
+      }
+    });
+
+    volume.addEventListener("input", e => { player.volume = e.target.value; });
+
+    async function fetchData() {
+      try {
+        const res = await fetch("api.php?action=nowplaying");
+        const data = await res.json();
+
+        document.getElementById("songTitle").textContent = data.title || "Unknown";
+        document.getElementById("songArtist").textContent = data.artist || "Unknown";
+        document.getElementById("coverArt").src = data.art || "https://placehold.co/400x400?text=Spooky+Cover";
+        document.getElementById("djStatus").textContent = data.is_live ? "🦇 Live DJ" : "👻 Haunted AutoDJ";
+        document.getElementById("nowPlaying").textContent = `${data.title} - ${data.artist}`;
+        document.getElementById("djList").textContent = data.djs.length ? data.djs.join(", ") : "No DJs in the crypt right now.";
+        document.title = `🎃 NekoSune Halloween Radio: ${data.artist} - ${data.title}`;
+        updateImageURL(data.art);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    // Poll every 3 seconds
+    setInterval(fetchData, 3000);
+    fetchData();
+
+    async function loadSongs() {
+      const res = await fetch("api.php?action=list");
+      const songs = await res.json();
+      const container = document.getElementById("songs");
+      container.innerHTML = "";
+      songs.forEach(song => {
+        container.innerHTML += `
+          <div class="flex items-center gap-4 bg-gray-800/80 p-3 rounded-lg border border-orange-600">
+            <img src="${song.song.art}" class="w-16 h-16 rounded-full animate-spin-slow" alt="cover">
+            <div class="flex-1">
+              <div class="font-bold">${song.song.title}</div>
+              <div class="text-sm text-gray-400">${song.song.artist}</div>
+            </div>
+            <button onclick="requestSong('${song.request_id}')" class="spooky-btn px-3 py-1 rounded">
+              Request
+            </button>
+          </div>`;
+      });
+    }
+
+    async function requestSong(id) {
+      const res = await fetch("api.php?action=request", {
+        method: "POST",
+        body: new URLSearchParams({ request_id: id })
+      });
+      const data = await res.json();
+      alert(data.message || "Request sent!");
+    }
+
+    loadSongs();
+  </script>
+</body>
+</html>
